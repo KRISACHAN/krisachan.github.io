@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>平面坐标系</title>
+    <style>
+      html,
+      body,
+      div {
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+      .poinerPosition {
+        font-size: 2vw;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="poinerPosition" class="poinerPosition"></div>
+    <script>
+      'use strict';
+      window.addEventListener('pointermove', PointerEvent => {
+        const {
+          x,
+          y,
+        } = PointerEvent;
+        poinerPosition.innerHTML = `
+          (${x}, ${y})
+        `;
+        poinerPosition.style.left = `${x + 20}px`;
+        poinerPosition.style.top = `${y}px`;
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+        <meta name="screen-orientation" content="portrait">
+        <meta name="x5-orientation" content="portrait">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta http-equiv="Cache-Control" content="no-siteapp">
+        <title>pointer-events</title>
+        <style>
+            html,
+            body,
+            div {
+                margin: 0;
+                padding: 0;
+            }
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+                background: -webkit-linear-gradient(#3d7eaa, #ffe47a);
+                background: -o-linear-gradient(#3d7eaa, #ffe47a);
+                background: -moz-linear-gradient(#3d7eaa, #ffe47a);
+                background: linear-gradient(#3d7eaa, #ffe47a);
+            }
+            body {
+            }
+            .背景 {
+                width: 100%;
+                height: 100%;
+                position: fixed;
+                left: 0;
+                top: 0;
+                background: rgba(13, 13, 13, 0.6);
+            }
+            .弹窗 {
+                width: 30vw;
+                height: 30vw;
+                background: rgba(255, 255, 255, 1);
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                -webkit-transform: translate(-50%, -50%);
+                   -moz-transform: translate(-50%, -50%);
+                    -ms-transform: translate(-50%, -50%);
+                     -o-transform: translate(-50%, -50%);
+                        transform: translate(-50%, -50%);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="背景">
+            <div class="弹窗"></div>
+        </div>
+        <script>
+            'use strict';
+            const body = document.querySelector('body');
+            const bg = document.querySelector('.背景');
+            const tc = document.querySelector('.弹窗');
+            body.addEventListener('click', event => {
+                console.log(event);
+                bg.style.display = 'none';
+            });
+            bg.addEventListener('click', event => {
+                console.log(event);
+                bg.style.display = 'block';
+            });
+            tc.addEventListener('click', event => {
+                console.log(event);
+                bg.style.display = 'block';
+            });
+        </script>
+    </body>
+</html>

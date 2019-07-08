@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+        <meta name="screen-orientation" content="portrait">
+        <meta name="x5-orientation" content="portrait">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <meta http-equiv="Cache-Control" content="no-siteapp">
+        <title>路线记忆</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            html,
+            body {
+              width: 100vw;
+              height: 100vh;
+              overflow: hidden;
+            }
+            h1 {
+              font-size: 5vw;
+              position: absolute;
+              text-align: center;
+              width: 100%;
+            }
+            .大圆 {
+                width: 20vw;
+                height: 20vw;
+                border-radius: 50%;
+                box-shadow: 0 0 10px rgba(66,132,132,0.6);
+                background: #FF8442;
+                position: absolute;
+                top: 0;
+                left: 0;
+                cursor: pointer;
+                display: none;
+            }
+            .小圆 {
+                width: 10vw;
+                height: 10vw;
+                border-radius: 50%;
+                margin: auto;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                -webkit-transform: translate(-50%, -50%);
+                   -moz-transform: translate(-50%, -50%);
+                    -ms-transform: translate(-50%, -50%);
+                     -o-transform: translate(-50%, -50%);
+                        transform: translate(-50%, -50%);
+                background: #E9E9E9;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>请按住屏幕并移动</h1>
+        <div class="大圆">
+            <div class="小圆"></div>
+        </div>
+        <script>
+            'use strict';
+            const 大圆 = document.querySelector('.大圆');
+            const 小圆 = document.querySelector('.小圆');
+            const 大圆的高 = window.getComputedStyle(大圆, null).height;
+            const 大圆的宽 = window.getComputedStyle(大圆, null).width;
+            const 大圆的样式 = 大圆.style;
+            let 坐标数组 = [];
+            let 数组下标 = 0;
+            let 定时器 = null;
+            let 开关 = true;
+            const 运行 = 事件 => {
+                console.log(事件);
+                let X = 事件.clientX - parseInt(大圆的宽)/2;
+                let Y = 事件.clientY - parseInt(大圆的高)/2;
+                [].push.call(坐标数组, [X, Y]);
+                大圆的样式.left = `${X}px`;
+                大圆的样式.top = `${Y}px`;
+                大圆的样式.display = `block`;
+                数组下标 = 坐标数组.length;
+                开关 = true;
+            };
+
+            window.addEventListener('pointerdown', 事件 => {
+                console.log('pointerdown');
+                [].splice.call(坐标数组, 0, 坐标数组.length);
+                window.addEventListener('pointermove', 运行);
+            });
+
+            window.addEventListener('pointerup', 事件 => {
+                console.log('pointerup');
+                clearInterval(定时器);
+                window.removeEventListener('pointermove', 运行);
+                定时器 = setInterval(() => {
+                    if (开关) {
+                        数组下标--;
+                        大圆的样式.left = `${坐标数组[数组下标][0]}px`;
+                        大圆的样式.top = `${坐标数组[数组下标][1]}px`;
+                        if (数组下标 <= 1) {
+                            [].splice.call(坐标数组, 0, 坐标数组.length);
+                            大圆的样式.display = `none`;
+                            开关 = false;
+                        };
+                    };
+                }, 20);
+            });
+        </script>
+    </body>
+</html>

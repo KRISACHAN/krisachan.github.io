@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>writing mode</title>
+    <style>
+      /**
+       * writing-mode: horizontal-tb;
+       * writing-mode: vertical-rl;
+       * writing-mode: vertical-lr;
+       * writing-mode: sideways-rl;
+       * writing-mode: sideways-lr;
+       *
+       * writing-mode: inherit;
+       * writing-mode: initial;
+       * writing-mode: unset;
+       */
+      .wm-htb {
+        writing-mode: horizontal-tb;
+      }
+      .wm-vrl {
+        writing-mode: vertical-rl;
+      }
+      .wm-vlr {
+        writing-mode: vertical-lr;
+      }
+      .wm-srl {
+        writing-mode: sideways-rl;
+      }
+      .wm-slr {
+        writing-mode: sideways-lr;
+      }
+      .text-content {
+        width: 200px;
+        padding: 20px;
+        border: 1px solid;
+        display: inline-block;
+        vertical-align: top;
+        padding-right: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="text-content wm-htb">writing-mode: horizontal-tb;</div>
+    <div class="text-content wm-vrl">writing-mode: vertical-rl;</div>
+    <div class="text-content wm-vlr">writing-mode: vertical-lr;</div>
+    <div class="text-content wm-srl">writing-mode: sideways-rl;</div>
+    <div class="text-content wm-slr">writing-mode: sideways-lr;</div>
+    <script>
+    'use strict'
+    </script>
+  </body>
+</html>
