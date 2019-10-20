@@ -1,26 +1,24 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="zh-CN">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>记一次递归在我项目中所发挥的作用 | 鱼头的海上世界</title>
-    <meta name="description" content="kris&#39;s area">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>记一次递归在我项目中所发挥的作用 | 鱼头的Web海洋</title>
+    <meta name="description" content="让你的Web学习如同玩耍在海洋一样快乐" />
     <link rel="icon" href="https://fish-pond-1253945200.cos.ap-guangzhou.myqcloud.com/base/blogfavicon.ico">
     
-    <link rel="preload" href="/assets/css/styles.556314fe.css" as="style"><link rel="preload" href="/assets/js/app.556314fe.js" as="script"><link rel="preload" href="/assets/js/26.9636aa8f.js" as="script"><link rel="prefetch" href="/assets/js/1.31a4cd9e.js"><link rel="prefetch" href="/assets/js/10.717837eb.js"><link rel="prefetch" href="/assets/js/11.0a5acb39.js"><link rel="prefetch" href="/assets/js/12.854114c8.js"><link rel="prefetch" href="/assets/js/13.bc373f2b.js"><link rel="prefetch" href="/assets/js/14.d2ecfcee.js"><link rel="prefetch" href="/assets/js/15.6a62e10c.js"><link rel="prefetch" href="/assets/js/16.e65ece7f.js"><link rel="prefetch" href="/assets/js/17.900aa3da.js"><link rel="prefetch" href="/assets/js/18.c07d0cbb.js"><link rel="prefetch" href="/assets/js/19.d6e616d3.js"><link rel="prefetch" href="/assets/js/2.93fc5334.js"><link rel="prefetch" href="/assets/js/20.3f914674.js"><link rel="prefetch" href="/assets/js/21.712c9c50.js"><link rel="prefetch" href="/assets/js/22.7e7ea0f6.js"><link rel="prefetch" href="/assets/js/23.43751d0a.js"><link rel="prefetch" href="/assets/js/24.ffac520a.js"><link rel="prefetch" href="/assets/js/25.81666c0d.js"><link rel="prefetch" href="/assets/js/27.22bc8f4c.js"><link rel="prefetch" href="/assets/js/28.de4f78e0.js"><link rel="prefetch" href="/assets/js/29.bd183663.js"><link rel="prefetch" href="/assets/js/3.f5a4b820.js"><link rel="prefetch" href="/assets/js/30.7496da19.js"><link rel="prefetch" href="/assets/js/4.069d351c.js"><link rel="prefetch" href="/assets/js/5.8cd19739.js"><link rel="prefetch" href="/assets/js/6.6e539dcd.js"><link rel="prefetch" href="/assets/js/7.eca43d19.js"><link rel="prefetch" href="/assets/js/8.94c962b6.js"><link rel="prefetch" href="/assets/js/9.8ea91090.js">
-    <link rel="stylesheet" href="/assets/css/styles.556314fe.css">
+    <link rel="preload" href="/assets/css/0.styles.a57752fc.css" as="style"><link rel="preload" href="/assets/js/app.9e984545.js" as="script"><link rel="preload" href="/assets/js/29.7562c6ed.js" as="script"><link rel="prefetch" href="/assets/js/16.b4cd90f2.js"><link rel="prefetch" href="/assets/js/2.ee28eecc.js"><link rel="prefetch" href="/assets/js/3.944effef.js"><link rel="prefetch" href="/assets/js/4.7a8e6c99.js"><link rel="prefetch" href="/assets/js/5.e70cbbe2.js"><link rel="prefetch" href="/assets/js/6.c8c69fdc.js"><link rel="prefetch" href="/assets/js/7.9dc826fb.js"><link rel="prefetch" href="/assets/js/8.547a0a0f.js"><link rel="prefetch" href="/assets/js/9.a579d717.js"><link rel="prefetch" href="/assets/js/10.d8c73571.js"><link rel="prefetch" href="/assets/js/11.b1c328d1.js"><link rel="prefetch" href="/assets/js/12.c076e51c.js"><link rel="prefetch" href="/assets/js/13.6e702c0c.js"><link rel="prefetch" href="/assets/js/14.f39ca325.js"><link rel="prefetch" href="/assets/js/15.6c96d7d6.js"><link rel="prefetch" href="/assets/js/17.1c5748cf.js"><link rel="prefetch" href="/assets/js/18.14b2de57.js"><link rel="prefetch" href="/assets/js/19.06d56ca5.js"><link rel="prefetch" href="/assets/js/20.4644f91c.js"><link rel="prefetch" href="/assets/js/21.f33e2f5f.js"><link rel="prefetch" href="/assets/js/22.0b08443e.js"><link rel="prefetch" href="/assets/js/23.e44d5f39.js"><link rel="prefetch" href="/assets/js/24.5a278fba.js"><link rel="prefetch" href="/assets/js/25.36252063.js"><link rel="prefetch" href="/assets/js/26.45b57138.js"><link rel="prefetch" href="/assets/js/27.ceec3f3f.js"><link rel="prefetch" href="/assets/js/28.1b510b55.js"><link rel="prefetch" href="/assets/js/30.62c808b1.js"><link rel="prefetch" href="/assets/js/31.50a51652.js"><link rel="prefetch" href="/assets/js/32.0e86f218.js"><link rel="prefetch" href="/assets/js/33.45f1ef79.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.a57752fc.css">
   </head>
   <body>
-    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div><a href="/" class="home-link router-link-active"><!----><span class="site-name">
-      鱼头的海上世界
-    </span></a><div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""><!----></div><!----></div></header><div class="sidebar-mask"></div><div class="sidebar"><!----><ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading open"><span>记一次递归在我项目中所发挥的作用</span><!----></p><ul class="sidebar-group-items"><li><a href="/js/others/recursion.html#背景" class="sidebar-link">背景</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/js/others/recursion.html#什么是递归" class="sidebar-link">什么是递归</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/js/others/recursion.html#递归怎么写？" class="sidebar-link">递归怎么写？</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/js/others/recursion.html#功能实现" class="sidebar-link">功能实现</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/js/others/recursion.html#分步实现" class="sidebar-link">分步实现</a></li><li class="sidebar-sub-header"><a href="/js/others/recursion.html#完整代码" class="sidebar-link">完整代码</a></li><li class="sidebar-sub-header"><a href="/js/others/recursion.html#备注：函数体积好大呀，但这只是业务里的一个小小小功能，流下了不会优化代码的泪水" class="sidebar-link">备注：函数体积好大呀，但这只是业务里的一个小小小功能，流下了不会优化代码的泪水~</a></li></ul></li></ul></div></li></ul></div><div class="page"><div class="content"><h1 id="记一次递归在我项目中所发挥的作用"><a href="#记一次递归在我项目中所发挥的作用" aria-hidden="true" class="header-anchor">#</a> 记一次递归在我项目中所发挥的作用</h1><blockquote><ul><li>作者：陈大鱼头</li><li>github： <a href="https://github.com/KRISACHAN" target="_blank" rel="noopener noreferrer">KRISACHAN<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></blockquote><h2 id="背景"><a href="#背景" aria-hidden="true" class="header-anchor">#</a> 背景</h2><p>在最近的项目中，有这么一个功能点，就是要获取在WEB IDE里用户所写的注释中的一段特殊规则，然后解析成一段JS config 对象
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">鱼头的Web海洋</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><!----> <ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading open"><span>记一次递归在我项目中所发挥的作用</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/js/others/recursion.html#背景" class="sidebar-link">背景</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/js/others/recursion.html#什么是递归" class="sidebar-link">什么是递归</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/js/others/recursion.html#递归怎么写？" class="sidebar-link">递归怎么写？</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/js/others/recursion.html#功能实现" class="sidebar-link">功能实现</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/js/others/recursion.html#分步实现" class="sidebar-link">分步实现</a></li><li class="sidebar-sub-header"><a href="/js/others/recursion.html#完整代码" class="sidebar-link">完整代码</a></li><li class="sidebar-sub-header"><a href="/js/others/recursion.html#备注：函数体积好大呀，但这只是业务里的一个小小小功能，流下了不会优化代码的泪水" class="sidebar-link">备注：函数体积好大呀，但这只是业务里的一个小小小功能，流下了不会优化代码的泪水~</a></li></ul></li></ul></div></li></ul> </div> <div class="page"> <div class="content"><h1 id="记一次递归在我项目中所发挥的作用"><a href="#记一次递归在我项目中所发挥的作用" aria-hidden="true" class="header-anchor">#</a> 记一次递归在我项目中所发挥的作用</h1> <blockquote><ul><li>作者：陈大鱼头</li> <li>github： <a href="https://github.com/KRISACHAN" target="_blank" rel="noopener noreferrer">KRISACHAN<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></blockquote> <h2 id="背景"><a href="#背景" aria-hidden="true" class="header-anchor">#</a> 背景</h2> <p>在最近的项目中，有这么一个功能点，就是要获取在WEB IDE里用户所写的注释中的一段特殊规则，然后解析成一段JS config 对象
 <br>
 例如：
-<br></p><div class="language- extra-class"><pre class="language-text"><code>//% width=&quot;100px&quot; height=&quot;200px&quot;
+<br></p> <div class="language- extra-class"><pre class="language-text"><code>//% width=&quot;100px&quot; height=&quot;200px&quot;
 //% pos.top=&quot;50px&quot; pos.left=&quot;50px&quot;
 //% writable=true
 //% q.b.d.w.r.f=30 q.b.d.w.r.a=40
-</code></pre></div><p>要转成</p><div class="language- extra-class"><pre class="language-text"><code>{
+</code></pre></div><p>要转成</p> <div class="language- extra-class"><pre class="language-text"><code>{
     width: '100px',
     height: '200px',
     pos: {
@@ -42,12 +40,12 @@
     }
 }
 </code></pre></div><p>类似的规则
-<br><img src="https://user-gold-cdn.xitu.io/2018/12/29/167f7887435c784e?imageView2/2/w/480/h/480/q/85/interlace/1" alt="悲伤蛙"></p><h2 id="什么是递归"><a href="#什么是递归" aria-hidden="true" class="header-anchor">#</a> 什么是递归</h2><p>来自百度的解释：
-<br><strong>递归：<a href="https://baike.baidu.com/item/%E9%80%92%E5%BD%92/1740695" target="_blank" rel="noopener noreferrer">程序调用自身的编程技巧称为递归 (recursion)<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></strong><br><strong>尾递归：<a href="https://baike.baidu.com/item/%E5%B0%BE%E9%80%92%E5%BD%92/554682" target="_blank" rel="noopener noreferrer">如果一个函数中所有递归形式的调用都出现在函数的末尾，我们称这个递归函数是尾递归的。<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></strong></p><p>就是 <strong>复读机</strong><img src="https://user-gold-cdn.xitu.io/2018/12/29/167f799c0168cbb1?w=638&h=580&f=jpeg&s=38467" alt="复读机"></p><h2 id="递归怎么写？"><a href="#递归怎么写？" aria-hidden="true" class="header-anchor">#</a> 递归怎么写？</h2><p><strong>一般</strong></p><div class="language- extra-class"><pre class="language-text"><code>const fibonacci = num =&gt; (num === 1 ? 1 : num * fibonacci(num - 1))
-</code></pre></div><p><strong>尾递归</strong></p><div class="language- extra-class"><pre class="language-text"><code>const fibonacci = (num, total = 1) =&gt; (num === 0 ? total : fibonacci(num - 1, num * total))
-</code></pre></div><p><strong>Array.reduce</strong></p><div class="language- extra-class"><pre class="language-text"><code>const getArray = count =&gt; Array.from({ length: count }, (value, key) =&gt; key)
+<br> <img src="https://user-gold-cdn.xitu.io/2018/12/29/167f7887435c784e?imageView2/2/w/480/h/480/q/85/interlace/1" alt="悲伤蛙"></p> <h2 id="什么是递归"><a href="#什么是递归" aria-hidden="true" class="header-anchor">#</a> 什么是递归</h2> <p>来自百度的解释：
+<br> <strong>递归：<a href="https://baike.baidu.com/item/%E9%80%92%E5%BD%92/1740695" target="_blank" rel="noopener noreferrer">程序调用自身的编程技巧称为递归 (recursion)<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></strong> <br> <strong>尾递归：<a href="https://baike.baidu.com/item/%E5%B0%BE%E9%80%92%E5%BD%92/554682" target="_blank" rel="noopener noreferrer">如果一个函数中所有递归形式的调用都出现在函数的末尾，我们称这个递归函数是尾递归的。<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></strong></p> <p>就是 <strong>复读机</strong> <img src="https://user-gold-cdn.xitu.io/2018/12/29/167f799c0168cbb1?w=638&h=580&f=jpeg&s=38467" alt="复读机"></p> <h2 id="递归怎么写？"><a href="#递归怎么写？" aria-hidden="true" class="header-anchor">#</a> 递归怎么写？</h2> <p><strong>一般</strong></p> <div class="language- extra-class"><pre class="language-text"><code>const fibonacci = num =&gt; (num === 1 ? 1 : num * fibonacci(num - 1))
+</code></pre></div><p><strong>尾递归</strong></p> <div class="language- extra-class"><pre class="language-text"><code>const fibonacci = (num, total = 1) =&gt; (num === 0 ? total : fibonacci(num - 1, num * total))
+</code></pre></div><p><strong>Array.reduce</strong></p> <div class="language- extra-class"><pre class="language-text"><code>const getArray = count =&gt; Array.from({ length: count }, (value, key) =&gt; key)
 const fibonacci = num =&gt; getArray(num).reduceRight((accumulator, currentValue) =&gt; accumulator * currentValue)
-</code></pre></div><h2 id="功能实现"><a href="#功能实现" aria-hidden="true" class="header-anchor">#</a> 功能实现</h2><h3 id="分步实现"><a href="#分步实现" aria-hidden="true" class="header-anchor">#</a> 分步实现</h3><ol><li>过滤常规内容，获取特殊的备注信息，去除空格，并且转成数组
+</code></pre></div><h2 id="功能实现"><a href="#功能实现" aria-hidden="true" class="header-anchor">#</a> 功能实现</h2> <h3 id="分步实现"><a href="#分步实现" aria-hidden="true" class="header-anchor">#</a> 分步实现</h3> <ol><li>过滤常规内容，获取特殊的备注信息，去除空格，并且转成数组
 <ul><li>此时的数组内容为<div class="language- extra-class"><pre class="language-text"><code>[
     '//% blockId=&quot;sloth_servo_write&quot;  block=&quot;set servo %channel|degree %degree&quot;',
     '//% advanced=true',
@@ -57,7 +55,7 @@ const fibonacci = num =&gt; getArray(num).reduceRight((accumulator, currentValue
     '//% a.b.c.d=20 a.b.c.e=222',
     '//% q.b.d.w.r.f=30 q.b.d.w.r.a=40'
 ]
-</code></pre></div></li></ul><div class="language- extra-class"><pre class="language-text"><code>const code = `
+</code></pre></div></li></ul> <div class="language- extra-class"><pre class="language-text"><code>const code = `
 //% width=&quot;100px&quot; height=&quot;200px&quot;
 //% pos.top=&quot;50px&quot; pos.left=&quot;50px&quot;
 //% writable=true
@@ -69,7 +67,7 @@ const annotation_array_remove_space = annotation_item =&gt; annotation_item.trim
 const annotation_array = code.split('\n')
                              .filter(annotation_array_filter)
                              .map(annotation_array_remove_space)
-</code></pre></div></li><li>遍历特殊规则数组，把每一项配置都压入一个新对象
+</code></pre></div></li> <li>遍历特殊规则数组，把每一项配置都压入一个新对象
 <ul><li>此时的新对象内内容为<div class="language- extra-class"><pre class="language-text"><code>{
     a.b.c.d: 20,
     a.b.c.e: 222,
@@ -84,7 +82,7 @@ const annotation_array = code.split('\n')
     q.b.d.w.r.f: 30,
     weight: 50,
 }
-</code></pre></div></li></ul></li></ol><div class="language- extra-class"><pre class="language-text"><code>      const annotation_array_loop = annotation_item =&gt; {
+</code></pre></div></li></ul></li></ol> <div class="language- extra-class"><pre class="language-text"><code>      const annotation_array_loop = annotation_item =&gt; {
         // 把注释中的每一项配置转成对象
         const result_forEach = result_item =&gt; {
           let annotation_sub_object = {};
@@ -128,7 +126,7 @@ const annotation_array = code.split('\n')
     },
     ...
 ]
-</code></pre></div></li></ul></li></ol><div class="language- extra-class"><pre class="language-text"><code>      let main_array = []; // 承载每一个配置的数组
+</code></pre></div></li></ul></li></ol> <div class="language- extra-class"><pre class="language-text"><code>      let main_array = []; // 承载每一个配置的数组
       const annotation_object_keys = Object.keys(annotation_object); // 获取扁平化后的注释对象的key
       const annotation_object_keys_loop = annotation_object_key =&gt; { // 循环变量每一项注释
         const annotation_object_key_array = annotation_object_key.split('.'); // 把多级对象转成数组
@@ -162,7 +160,7 @@ const annotation_array = code.split('\n')
     q: {b: {…}},
     weight: 50
 }
-</code></pre></div></li></ul></li></ol><div class="language- extra-class"><pre class="language-text"><code>      const annotation_tree = {};
+</code></pre></div></li></ul></li></ol> <div class="language- extra-class"><pre class="language-text"><code>      const annotation_tree = {};
       const tree_data = (key, value, object) =&gt; { // 递归合并对象
         if (this.type(value) !== '[object Object]') { // 如果当前传入元素为对象，则直接压入对象中
           object[key] = value;
@@ -182,7 +180,7 @@ const annotation_array = code.split('\n')
       };
       main_array.forEach(main_array_forEach);
       main_array = undefined; // 清空main_array
-</code></pre></div><h3 id="完整代码"><a href="#完整代码" aria-hidden="true" class="header-anchor">#</a> 完整代码</h3><div class="language- extra-class"><pre class="language-text"><code>// 代码转换器
+</code></pre></div><h3 id="完整代码"><a href="#完整代码" aria-hidden="true" class="header-anchor">#</a> 完整代码</h3> <div class="language- extra-class"><pre class="language-text"><code>// 代码转换器
 ((wid, dcm) =&gt; {
   'use strict';
   const win = wid;
@@ -330,7 +328,22 @@ const annotation_array = code.split('\n')
   };
 })(window, document);
 
-</code></pre></div><h3 id="备注：函数体积好大呀，但这只是业务里的一个小小小功能，流下了不会优化代码的泪水"><a href="#备注：函数体积好大呀，但这只是业务里的一个小小小功能，流下了不会优化代码的泪水" aria-hidden="true" class="header-anchor">#</a> 备注：函数体积好大呀，但这只是业务里的一个小小小功能，流下了不会优化代码的泪水~</h3><p><img src="https://user-gold-cdn.xitu.io/2018/12/29/167f7d4020b4dd4e?w=255&h=255&f=jpeg&s=18243" alt="哭"></p></div><div class="page-edit"><!----><!----></div><!----></div></div></div>
-    <script src="/assets/js/app.556314fe.js" defer></script><script src="/assets/js/26.9636aa8f.js" defer></script>
+</code></pre></div><h3 id="备注：函数体积好大呀，但这只是业务里的一个小小小功能，流下了不会优化代码的泪水"><a href="#备注：函数体积好大呀，但这只是业务里的一个小小小功能，流下了不会优化代码的泪水" aria-hidden="true" class="header-anchor">#</a> 备注：函数体积好大呀，但这只是业务里的一个小小小功能，流下了不会优化代码的泪水~</h3> <p><img src="https://user-gold-cdn.xitu.io/2018/12/29/167f7d4020b4dd4e?w=255&h=255&f=jpeg&s=18243" alt="哭"></p></div> <div class="page-footer content">
+    网站备案号：粤ICP备17113436号-1
+  </div> <!----> <div class="right-group"><div class="item"><span class="title">加入前端鱼塘</span> <span class="desc">
+        扫描二维码回复
+        <span class="inner">加群</span> 学习
+      </span> <img width="100%" src="https://fish-pond-1253945200.cos.ap-guangzhou.myqcloud.com/img/base/wx-qrcode.jpg"></div></div> <div class="page-edit"><!----> <!----></div> <!----> </div> <div></div></div></div>
+    <script src="/assets/js/29.7562c6ed.js" defer></script><script src="/assets/js/app.9e984545.js" defer></script>
+    <!-- Hotjar Tracking Code for yuchengkai.cn -->
+    <script>
+      var _hmt = _hmt || []
+      ;(function() {
+        var hm = document.createElement('script')
+        hm.src = 'https://hm.baidu.com/hm.js?52ee35894430604d0d3ce3b9c089adf9'
+        var s = document.getElementsByTagName('script')[0]
+        s.parentNode.insertBefore(hm, s)
+      })()
+    </script>
   </body>
 </html>
